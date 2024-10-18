@@ -6,7 +6,7 @@
  */
 ?>
 <!-- wp:columns -->
-<div class="wp-block-columns">
+<div id="hero-section" class="wp-block-columns">
     <!-- wp:column -->
     <div class="wp-block-column">
         <!-- wp:spacer {"height":100} -->
@@ -14,11 +14,11 @@
         <!-- /wp:spacer -->
 
         <!-- wp:heading -->
-        <h2 class="wp-block-heading">Where the cool kids hang out</h2>
+        <h1 class="wp-block-heading">Where the cool kids hang out</h1>
         <!-- /wp:heading -->
 
         <!-- wp:paragraph -->
-        <p class="has-text-align-left"><?php echo esc_html_x( 'Come connect with your friends and meet the coolest kids on the block.', 'Content of the hero section', 'coolkidstheme' ); ?></p>
+        <p><?php echo esc_html_x( 'Come connect with your friends and meet the coolest kids on the block.', 'Content of the hero section', 'coolkidstheme' ); ?></p>
         <!-- /wp:paragraph -->
 
         <!-- wp:buttons -->
@@ -35,9 +35,9 @@
 
     <!-- wp:column -->
     <div class="wp-block-column">
-        <!-- wp:image {"id":34,"sizeSlug":"full","linkDestination":"none"} -->
-        <figure class="wp-block-image size-full">
-            <img src="http://localhost:8080/wp-content/uploads/2024/10/hero-image-1.png" alt="" class="wp-image-34" />
+        <!-- wp:image -->
+        <figure class="wp-block-image">
+			<img src="http://localhost:8080/wp-content/uploads/2024/10/hero-image-1.png" alt="" class="wp-image-34"/>
         </figure>
         <!-- /wp:image -->
     </div>

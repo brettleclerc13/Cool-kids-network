@@ -1,15 +1,15 @@
 {
 	"version": 2,
 	"settings": {
-	  "layout": {
-		"contentSize": "none",
-		"wideSize": "none"
-	  }
+		"layout": {
+			"contentSize": "none",
+			"wideSize": "none"
+	  	}
 	},
 	"styles": {
-	  "layout": {
-		"contentSize": "none",
-		"wideSize": "none"
-	  }
+		"layout": {
+			"contentSize": "none",
+			"wideSize": "none"
+		}
 	}
-  }
+}
