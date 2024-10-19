@@ -1,8 +1,7 @@
 <?php
+/*** USER DASHBOARD ***/
 
-// USER DASHBOARD
-
-//Restrict user-dashboard access to logged in users only
+// Restrict user-dashboard access to logged in users only
 function restrict_user_dashboard_access() {
     // Check if the current page is the user dashboard and if the user is not logged in
     if (is_page('user-dashboard') && !is_user_logged_in()) {

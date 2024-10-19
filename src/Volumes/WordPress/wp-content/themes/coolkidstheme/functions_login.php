@@ -1,13 +1,19 @@
 <?php
+/*** LOGIN PAGE ***/
 
+// Log in button action, logs in user if password is correct.
 function handle_login_form_submission() {
 	// Check if correct WP Form is used (login form)
 	if (isset($_POST['wpforms']['id']) && $_POST['wpforms']['id'] == 102) {
 		// Check if the form is submitted with both email and password field set
 		if (isset($_POST['wpforms']['submit']) && isset($_POST['wpforms']['fields'][1]) && isset($_POST['wpforms']['fields'][2])) {
 			$password = $_POST['wpforms']['fields'][2];
-			
-			// Password check before logging in user
+			/*
+				Simply static password check before logging in user.
+				If the password manually inserted was incorrect,
+				reloading the page will insert the correct default password value
+				in the password input.
+			*/
 			if ($password !== 'password123') {
 				$_SESSION['login_error'] = 'Incorrect password, please type in "password123" as the password';
 				wp_redirect(home_url('/login'));

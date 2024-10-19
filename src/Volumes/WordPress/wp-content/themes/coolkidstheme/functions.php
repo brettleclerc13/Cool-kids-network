@@ -2,6 +2,7 @@
 include 'functions_signup.php';
 include 'functions_userdb.php';
 include 'functions_login.php';
+include 'functions_api.php';
 
 /*** GENERAL FUNCTIONS ***/
 
@@ -144,3 +145,5 @@ function custom_button_action() {
     <?php
 }
 add_action('wp_footer', 'custom_button_action');
+
+add_filter( 'wp_is_application_passwords_available', '__return_true' ); // Change to WP Media filter function
