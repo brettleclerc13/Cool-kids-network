@@ -1,8 +1,10 @@
 <?php
 include 'functions_signup.php';
 include 'functions_userdb.php';
+include 'functions_login.php';
 
-// GENERAL FUNCTIONS
+/*** GENERAL FUNCTIONS ***/
+
 // Queue 20 24 parent theme styles + cool kids theme styles
 function coolkids_enqueue_styles() {
     // Enqueuing the parent theme style
@@ -53,27 +55,18 @@ function hide_admin_bar_for_non_admins() {
 }
 add_action('after_setup_theme', 'hide_admin_bar_for_non_admins');
 
-//Redirect non-admin users to the dashboard - security function 
-// function restrict_dashboard_access() {
-//     if (is_admin() && !current_user_can('administrator') && !(defined('DOING_AJAX') && DOING_AJAX)) {
-//         wp_redirect(home_url());
-//         exit;
-//     }
-// }
-// add_action('admin_init', 'restrict_dashboard_access');
+//Redirect non-admin users from wp-admin page to the homepage - security function 
+function restrict_wp_admin_dashboard_access() {
+    if (is_admin() && !current_user_can('administrator') && !(wp_doing_ajax())) {
+        wp_redirect(home_url());
+        exit;
+    }
+}
+add_action('admin_init', 'restrict_wp_admin_dashboard_access');
 
+/*** BUTTONS ***/
 
-
-// HOMEPAGE FUNCTIONS
-/*
-	Button actions:
-	Signup navbar button -> signup page
-	Login navbar button -> login page
-	Logout navabr button -> logout user
-	Get started button -> signup page
-*/
-
-// Stack overflow function which logs the user out directly bypassing the confirmation page
+// Stack overflow function which logs the user out directly, bypassing the logout confirmation page
 add_action('check_admin_referer', 'logout_without_confirm', 10, 2);
 function logout_without_confirm($action)
 {
@@ -88,6 +81,13 @@ function logout_without_confirm($action)
     }
 }
 
+/*
+	Button actions:
+	Signup navbar button -> signup page
+	Login navbar button -> login page
+	Logout navbar button -> logout user
+	View your character button -> signup page
+*/
 function custom_button_action() {
     ?>
     <script>

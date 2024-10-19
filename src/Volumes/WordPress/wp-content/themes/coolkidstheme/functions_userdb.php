@@ -2,6 +2,17 @@
 
 // USER DASHBOARD
 
+//Restrict user-dashboard access to logged in users only
+function restrict_user_dashboard_access() {
+    // Check if the current page is the user dashboard and if the user is not logged in
+    if (is_page('user-dashboard') && !is_user_logged_in()) {
+        // Redirect to signup page if the user is not logged in
+        wp_redirect(home_url('/signup'));
+        exit;
+    }
+}
+add_action('template_redirect', 'restrict_user_dashboard_access');
+
 // Display user's character
 function display_user_character() {
 	$current_user = wp_get_current_user();
@@ -37,8 +48,8 @@ function display_other_user_characters() {
         $output .= '<ul>';
 
         foreach ($users as $user) {
-            // Skipping the current user from the list
-            if ($user->ID === $current_user->ID)
+            // Skipping the current user and administrator from the list
+            if ($user->ID === $current_user->ID || in_array('administrator', $user->roles))
 				continue;
 
             $first_name = get_user_meta($user->ID, 'first_name', true);
