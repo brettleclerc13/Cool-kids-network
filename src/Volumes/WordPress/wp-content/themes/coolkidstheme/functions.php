@@ -86,11 +86,14 @@ function logout_without_confirm( $action ) {
 	/*
 		Allow logout without confirmation
 	*/
-	if ( 'log-out' === $action && ! wp_verify_nonce( $_GET['_wpnonce'], 'log-out' ) ) {
-		$redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : 'http://localhost:8080';
-		$location    = str_replace( '&amp;', '&', wp_logout_url( $redirect_to ) );
-		header( "Location: $location" );
-		die;
+	if ( 'log-out' === $action ) {
+		// If '_wpnonce' is not set or verification fails, directly log out
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'log-out' ) ) {
+			$redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : 'http://localhost:8080';
+			$location    = str_replace( '&amp;', '&', wp_logout_url( $redirect_to ) );
+			wp_safe_redirect( $location );
+			exit;
+		}
 	}
 }
 

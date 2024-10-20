@@ -59,17 +59,6 @@ services:
     expose:
       - "6000"
 
-  prometheus:
-    container_name: prometheus
-    networks:
-      - cool-kids
-    build:
-      context: Dockers/prometheus
-      dockerfile: Dockerfile
-    ports:
-      - '7001:9090'
-    restart: unless-stopped
-
 volumes:
   wordpress:
     driver: local
