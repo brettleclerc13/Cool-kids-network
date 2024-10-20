@@ -1,0 +1,5 @@
+{
+    "require": {
+        "wp-media/apply-filters-typed": "^1.2"
+    }
+}

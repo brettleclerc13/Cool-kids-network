@@ -1,0 +1,78 @@
+services:
+
+  mariadb:
+    container_name: mariadb
+    networks:
+      - cool-kids
+    build:
+      context: Dockers/mariadb
+      dockerfile: Dockerfile
+    env_file: .env
+    volumes:
+      - mariadb:/var/lib/mysql
+    restart: unless-stopped
+    expose:
+      - "3306"
+
+  nginx:
+    container_name: nginx
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - cool-kids
+    depends_on:
+      - wordpress
+    build:
+      context: Dockers/nginx
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+  wordpress:
+    container_name: wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - cool-kids
+    build:
+      context: Dockers/wordpress
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      - mariadb
+    restart: on-failure
+    expose:
+      - "9000"
+
+  adminer:
+    container_name: adminer
+    networks:
+      - cool-kids
+    build:
+      context: Dockers/adminer
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    restart: on-failure
+    expose:
+      - "6000"
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './Volumes/WordPress'
+  mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './Volumes/DB'
+
+networks:
+  cool-kids:
+    driver: bridge
