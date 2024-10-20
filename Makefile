@@ -5,6 +5,7 @@ all: up
 up:
 	@mkdir -p ./src/Volumes/DB
 	@mkdir -p ./src/Volumes/WordPress
+	@docker-compose -f $(COMPOSE_FILE) build
 	docker-compose -f $(COMPOSE_FILE) up
 
 down:
@@ -17,11 +18,5 @@ fclean: down
 	@docker rmi -f $$(docker images -qa);\
 	docker volume rm $$(docker volume ls -q);\
 	docker system prune -a --force
-
-re:	
-	@mkdir -p ./src/Volumes/DB
-	@mkdir -p ./src/Volumes/WordPress
-	@docker-compose -f $(COMPOSE_FILE) build
-	@docker-compose -f $(COMPOSE_FILE) up
 
 .PHONY: all up down ps fclean re
