@@ -1,7 +1,10 @@
 __Problem Statement__
+
 The task was to develop a proof of concept for a new game called the Cool Kids Network, which is essentially a platform where users can sign up, generate their characters, and view their data based on different roles. The challenge was to create a user-management system that allows for different levels of data access, with specific functionality based on user roles like "Cool Kid," "Cooler Kid," and "Coolest Kid."
 
+
 __Technical Specifications__
+
 I decided to go with a Docker environment since it provides a consistent and isolated development environment.
 - It works across various environments. This eliminates the classic "it works on my machine" problem.
 - With the provided Makefile, setting up the entire application is as simple as running a single command (make). Reduces setup time.
@@ -23,7 +26,9 @@ That was a challenge as well because there were a lot of functions that I used w
 
 For exact details on how to operate the system, please view the readme file.
 
+
 __Conclusion__
+
 This project has not only deepened my understanding of WordPress and its newer block theme approach but also enhanced my skills in building user management systems. The challenges I faced, from adapting to the new markup language to implementing security measures and ensuring code quality through linting, have all contributed to my growth as a developer.
 
 I look forward to continuing this collaborative methodology within a team that appears to be at its best game!
