@@ -24,6 +24,8 @@ The API endpoint for changing a user-role was achieved by an add_filter function
 A PHP Code Sniffer lint inspection was carried out, excluding the WP core files and other files not directly related to the website.
 That was a challenge as well because there were a lot of functions that I used were not as per the WP standards. My WP forms were not checking for wp_nonces, so I then needed to change to a simple HTML form injected in the pages through shortcodes. Linting has really helped me better understand coding standards and keep up to date with the functions to use. Another regret is not implementing it at the start of the project.
 
+I unfortunately did not find a use-case for the wpm filters. But I look forward to implementing them in my code :)
+
 For exact details on how to operate the system, please view the readme file.
 
 
