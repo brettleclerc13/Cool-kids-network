@@ -13,4 +13,3 @@ RUN chmod 755 /etc/php82/php-fpm.d/www.conf
 RUN mkdir -p /run/php
 
 CMD [ "php-fpm82", "-F" ]
-
