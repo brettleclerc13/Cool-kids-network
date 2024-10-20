@@ -15,14 +15,15 @@ add_action( 'template_redirect', 'restrict_user_dashboard_access' );
 // Display user's character
 function display_user_character() {
 	$current_user = wp_get_current_user();
-	$output       = '<ul>';
-	$email        = get_user_meta( $current_user->user_email, 'email', true );
+	$email        = $current_user->user_email;
 	$roles        = implode( ', ', $current_user->roles );
 	$first_name   = get_user_meta( $current_user->ID, 'first_name', true );
 	$last_name    = get_user_meta( $current_user->ID, 'last_name', true );
 	$country      = get_user_meta( $current_user->ID, 'country', true );
-	$output      .= "<li>{$first_name} {$last_name} from {$country}, Email: {$email}, Role: {$roles}</li>";
-	$output      .= '</ul>';
+	$output       = '<p class="user-char">';
+	$output      .= "{$first_name} {$last_name} from {$country}</p>";
+	$output      .= '<p class="user-char">';
+	$output      .= "Email: {$email}, Role: {$roles}</p>";
 	return $output;
 }
 add_shortcode( 'current_user_character', 'display_user_character' );
@@ -37,11 +38,11 @@ function display_other_user_characters() {
 		Else, retrieve all users and parse details as per other roles.
 	*/
 	if ( in_array( 'cool_kid', $current_user->roles, true ) ) {
-		$output .= '<p>You need to be cooler to view other chracters. Sorry!</p>';
+		$output .= '<p class="user-char">You need to be cooler to view other chracters. Sorry!</p>';
 	} else {
 		// Fetch all users
 		$users   = get_users();
-		$output .= '<ul>';
+		$output .= '<ul class="user-char-list">';
 
 		foreach ( $users as $user ) {
 			// Skipping the current user and administrator from the list
@@ -62,7 +63,7 @@ function display_other_user_characters() {
 			if ( in_array( 'coolest_kid', $current_user->roles, true ) ) {
 				$email   = $user->user_email;
 				$roles   = implode( ', ', $user->roles );
-				$output .= "<li>{$first_name} {$last_name} from {$country}, Email: {$email}, Role: {$roles}</li>";
+				$output .= "<li>{$first_name} {$last_name} from {$country}. Email: {$email}, Role: {$roles}</li>";
 			}
 		}
 		$output .= '</ul>';

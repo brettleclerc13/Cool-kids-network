@@ -37,10 +37,91 @@ footer {
     margin-top: 0;
 }
 
-/*SIGNUP SECTION*/
-.signup-form-section {
-	height: 75vh;
-	min-width: auto;
+/*FORMS*/
+.form-group {
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
 	box-sizing: border-box;
-	padding-top: 40px;
+	padding-top: 10%;
+}
+
+.form {
+	font-family: 'Inter', sans-serif;
+}
+
+.form-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin: 15px;
+}
+
+.form-emails {
+	font-family: 'Inter', sans-serif;
+	padding: 10px 30px 10px 10px;
+}
+
+.form-passwords {
+	font-family: 'Inter', sans-serif;
+	padding: 10px 30px 10px 10px;
+}
+
+.form-buttons {
+	font-family: 'Inter', sans-serif;
+	box-sizing: border-box;
+	margin: 0px 20px;
+	padding: 6px 18px;
+	background-color: #fed23a;
+	border-color: #fed23a;
+	border-radius: 3px;
+}
+
+.form-emails:focus {
+    outline: none;
+    border-color: #fed23a;
+}
+
+.form-passwords:focus {
+    outline: none;
+    border-color: #fed23a;
+}
+
+
+/*USER DASHBOARD*/
+.userdb-group {
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-top: 3%;
+}
+
+.user-char-cols {
+	margin-top: 30px;
+	width: 80%;
+	height:fit-content;
+}
+
+.user-char-col-1, .user-char-col-2 {
+	background-color: white;
+	height: fit-content;
+	min-height: 50vh;
+	border-radius: 3%;
+	padding: 20px;
+}
+
+.char-col-header {
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px 5px 10px 5px;
+}
+
+.user-char, .user-char-list {
+	font-family: 'Inter', sans-serif;
+	padding-left: 20px;
+}
+
+.user-char-list {
+	padding-left: 40px;
 }

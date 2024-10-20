@@ -4,14 +4,16 @@
 // Shortcode function for login form
 function login_form_shortcode() {
 	ob_start(); ?>
-	<form method="POST" action="">
-		<?php wp_nonce_field( 'login_action', 'login_nonce' ); ?>
-		<label for="login_email">Email:</label>
-		<input type="email" name="login_email" required>
-		<label for="login_password">Password:</label>
-		<input type="text" name="login_password" placeholder="password123" required>
-		<input type="submit" name="login_submit" value="Log In">
-	</form>
+	<div class="form">
+		<form method="POST" action="">
+			<?php wp_nonce_field( 'login_action', 'login_nonce' ); ?>
+			<div class=form-inputs>
+				<input class="form-emails" placeholder="Email" type="email" name="login_email" required>
+				<input class="form-passwords" placeholder="password123" type="text" name="login_password" placeholder="password123" required>
+				<input class="form-buttons" type="submit" name="login_submit" value="Log In">
+			</div>
+		</form>
+	</div>
 	<?php
 	return ob_get_clean();
 }

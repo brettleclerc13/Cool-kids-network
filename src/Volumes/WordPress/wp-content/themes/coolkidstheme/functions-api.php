@@ -31,7 +31,7 @@ function update_user_role( WP_REST_Request $request ) {
 	$email      = sanitize_email( $request->get_param( 'email' ) );
 	$first_name = sanitize_text_field( $request->get_param( 'first_name' ) );
 	$last_name  = sanitize_text_field( $request->get_param( 'last_name' ) );
-	$new_role   = sanitize_text_field( $request->get_param( 'new_role' ) );
+	$new_role   = sanitize_text_field( $request->get_param( 'role' ) );
 
 	// Check if the role is a cool role, otherwise send back an error using the WP_Error class
 	if ( ! in_array( $new_role, array( 'cool_kid', 'cooler_kid', 'coolest_kid' ), true ) ) {

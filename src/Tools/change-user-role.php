@@ -37,10 +37,8 @@ $admin_username = get_input( "Please enter your admin username\n>> " );
 $base64_credentials = base64_encode_credentials( $admin_username, 'JUnS NlzU WVYu Ug6l JSS3 9Mz7' );
 
 $data = array(
-	array(
-		'email'    => $email,
-		'new_role' => $user_role,
-	)
+	'email' => $email,
+	'role'  => $user_role,
 );
 
 // Add first and last names if provided
@@ -57,7 +55,8 @@ echo "Sending API request...\n";
 
 // Run the curl command
 $curl = curl_init();
-curl_setopt_array($curl,
+curl_setopt_array(
+	$curl,
 	array(
 		CURLOPT_URL => 'http://localhost:8080/wp-json/coolkids/v1/update-role',
 		CURLOPT_RETURNTRANSFER => true,
@@ -74,9 +73,9 @@ $response = curl_exec( $curl );
 
 // Check for curl errors
 if ( false === $response ) {
-	$error = curl_error( $curl );
+	$script_error = curl_error( $curl );
 	curl_close( $curl );
-	die( "Curl error: $error\n" );
+	die( "Curl error: $script_error\n" );
 }
 
 curl_close( $curl );

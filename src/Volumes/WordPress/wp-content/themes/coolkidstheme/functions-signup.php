@@ -4,12 +4,16 @@
 // Shortcode function for signup form with email field
 function signup_form_shortcode() {
 	ob_start(); ?>
-	<form method="POST" action="">
-		<?php wp_nonce_field( 'signup_action', 'signup_nonce' ); ?>
-		<label for="signup_email">Email:</label>
-		<input type="email" name="signup_email" required>
-		<input type="submit" name="signup_submit" value="Sign Up">
-	</form>
+	<div class="form">
+		<form method="POST" action="">
+			<?php wp_nonce_field( 'signup_action', 'signup_nonce' ); ?>
+			<div class=form-inputs>
+					<input class="form-emails" placeholder="Email" type="email" name="signup_email" required>
+					<input class="form-buttons" type="submit" name="signup_submit" value="Sign Up">
+				</div>
+			</div>
+		</form>
+	</div>
 	<?php
 	return ob_get_clean();
 }
