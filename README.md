@@ -13,7 +13,7 @@ This project is a WordPress site running in a Docker environment, utilizing a cu
 Make sure to have port **8080** free to use.
 
 - **Optional:**
-  - PHP executable for the API request script (`change-user-role.php`) in the `src/Tools` directory.
+  - PHP executable for the API request script (`change-user-role.php`) in the `/src/Tools` directory.
 
 ## Project Overview
 
@@ -36,7 +36,7 @@ The project runs on four Docker containers:
 
 ### Environment Variables
 
-There is a .env file in the src/ folder. Since this is a concept site meant for full transparency in its workings, the usernames and passwords for both WordPress and MariaDB have been shared as follows:
+Yes I know, there is a `.env` file in the `src` folder, since this is a concept site meant for full transparency in its workings. The usernames and passwords for both WordPress and MariaDB have been shared as follows:
 
 **WordPress Admin Credentials:**
 - Username: **webmaster**
@@ -62,6 +62,27 @@ Access the Adminer dashboard through: http://localhost:8080/adminer
 - Database: cool-kids-database
 
 **Note:** Ensure that the server is set to mariadb and not the default localhost.
+
+### Changing a User Role Through 3rd Party Integration
+In the `src/Tools` directory, you will find a simple PHP script called `change-user-role.php`. This script prompts you to enter the required arguments:
+- email
+- new role (cool_kid, cooler_kid, coolest_kid)
+- first name (optional)
+- last name (optional)
+- admin username (webmaster)
+
+The script utilizes a curl function for making API requests to update a user's role. The password `JUnS NlzU WVYu Ug6l JSS3 9Mz7` is hard coded in the script. You can also run the following curl command to achieve the same result:
+
+```bash
+curl --location 'http://localhost:8080/wp-json/coolkids/v1/update-role?Content-Type=application%2Fjson' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic d2VibWFzdGVyOkpVblMgTmx6VSBXVll1IFVnNmwgSlNTMyA5TXo3' \
+--data-raw '{
+    "email": "xyz@gmail.com",
+    "new_role": "coolest_kid"
+}'
+```
+Make sure to replace `xyz@gmail.com` with the target user's email and `coolest_kid` with the desired new role. The Authorization header uses Basic authentication with the admin's username and Application Password (WP feature), base64-encoded, as required by the API.
 
 ## Project Details
 
